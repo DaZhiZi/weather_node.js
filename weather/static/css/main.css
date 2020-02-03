@@ -1,0 +1,119 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+/*now*/
+#id-weather-now {
+    background: #fb6d36;
+    padding-top: 20px;
+    height: 295px;
+    box-sizing: border-box;
+}
+.now-main {
+    text-align: center;
+    padding: 50px 0px;
+    color: white;
+}
+.now-tmp {
+    font-size: 70px;
+    margin: 0px;
+}
+.now-other {
+    list-style: none;
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+}
+.now-other li {
+    display: inline-block;
+    flex: 1;
+    border-left: 1px solid;
+    text-align: center;
+}
+.now-other li:nth-child(1) {
+    border-left: none;
+}
+.li-detail {
+    font-size: 24px;
+}
+/*today*/
+#id-weather-today {
+    position: relative;
+    border-bottom: 1px solid #d0d0d0;
+    height: 75px;
+    margin: 0px 40px;
+}
+.today-main {
+    position: absolute;
+    left: 0px;
+    display: inline-block;
+}
+.today-cond {
+    color: #808080;
+}
+.today-tmp {
+    position: absolute;
+    right: 0px;
+    display: inline-block;
+    font-size: 24px;
+    color: #fb6d36;
+}
+/*forecast*/
+#id-weather-forecast {
+    height: 295px;
+    padding: 15px 20px 0px 20px;
+    box-sizing: border-box;
+}
+/*search*/
+#id-weather-search {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background: #fb6d36;
+    box-sizing: border-box;
+    transition: all 1.5s ease-out;
+}
+.search-container {
+    position: relative;
+    top: 30%;
+}
+.search-container h1 {
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 40px;
+    margin: 20px;
+}
+.search-container input {
+    display: block;
+    margin: 0 auto;
+    padding: 3px;
+    width: 50%;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    outline: none;
+}
+.search-container button {
+    display: block;
+    margin: 20px auto;
+    width: 30%;
+    padding: 5px;
+    border: 1px solid #d0d0d0;
+    border-radius: 3px;
+    outline: none;
+    color: #fb6d36;
+    font-size: 18px;
+}
+/*public*/
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.hide {
+    transform: translateY(100%);
+    opacity: 0;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>天气预报</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="js/echarts.min.js"></script>
+    </head>
+    <body>
+        <div id="id-container">
+            <section id="id-weather-now">
+                <div class="now-main">
+                    <div class="now-tmp">
+                        00°
+                    </div>
+                    <div class="now-main-detail">
+                        <span class="now-city">城市</span>
+                        |
+                        <span class="now-cond">天气</span>
+                    </div>
+                </div>
+                <ul class="now-other">
+                    <li>
+                        <div class="now-windDir li-title">
+                            风向
+                        </div>
+                        <div class="now-windSc li-detail">
+                            风力
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li-title">
+                            相对湿度
+                        </div>
+                        <div class="now-hum li-detail">
+                            00%
+                        </div>
+                    </li>
+                    <li>
+                        <div class="li-title">
+                            体感温度
+                        </div>
+                        <div class="now-fl li-detail">
+                            00°
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section id="id-weather-today">
+                <div class="today-main vertical-center">
+                    <span>今天</span>
+                    <br>
+                    <span class="today-cond">天气</span>
+                </div>
+                <div class="today-tmp vertical-center">
+                    <span class="today-tmpMax">00°</span>
+                    /
+                    <span class="today-tmpMin">00°</span>
+                </div>
+            </section>
+            <section id="id-weather-forecast">
+            </section>
+            <section id="id-weather-search">
+                <div class="search-container">
+                    <h1>天气查询</h1>
+                    <input type="text" class="search-input" placeholder="请输入城市的拼音，如：beijing">
+                    <button type="button" name="button" class="search-btn">查询</button>
+                </div>
+            </section>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>
