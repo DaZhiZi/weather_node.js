@@ -1,7 +1,9 @@
-var log = function() {
+const log = function() {
     console.log.apply(console, arguments)
 }
-
+// const Weather = function () {
+//     this.city = ''
+// }
 // 定义一个类，每次获取天气可以写入
 class Weather {
     constructor() {
@@ -16,39 +18,39 @@ class Weather {
     }
 }
 
-var catchUrl = function(url) {
-    var request = require('sync-request')
-    var r = request('GET', url)
-    var body = r.getBody('utf-8')
-    var body_2 = JSON.parse(body)
+let catchUrl = function(url) {
+    let request = require('sync-request')
+    let r = request('GET', url)
+    let body = r.getBody('utf-8')
+    let body_2 = JSON.parse(body)
     log('body_2', body_2)
     return body_2
 }
 
-var getNowWeather = function(city="guangzhou") {
-    var url = `https://free-api.heweather.com/v5/now?city=${city}&key=286564901ae341f38e5753fa99bfe769`
-    var n = catchUrl(url)
-    var now = n.HeWeather5[0].now
-    var nowWeather = new Weather()
-    nowWeather.city = n.HeWeather5[0].basic.city
-    nowWeather.tmp = now.tmp + '°'
-    nowWeather.cond = now.cond.txt
-    nowWeather.windDir = now.wind.dir
-    nowWeather.windSc = now.wind.sc
-    nowWeather.hum = now.hum + "%"
-    nowWeather.fl = now.fl + '°'
-    return nowWeather
+const getNowWeather = function(city="wuhan") { // 现在的 天气
+    let url = `https://free-api.heweather.com/v5/now?city=${city}&key=286564901ae341f38e5753fa99bfe769`
+    let data = catchUrl(url)
+    let now = data.HeWeather5[0].now
+    let n  = new Weather()
+    n.city = n.HeWeather5[0].basic.city
+    n.tmp = now.tmp + '°'
+    n.cond = now.cond.txt
+    n.windDir = now.wind.dir
+    n.windSc = now.wind.sc
+    n.hum = now.hum + "%"
+    n.fl = now.fl + '°'
+    return n
 }
 
-var getForecastWeather = function(city="guangzhou") {
-    var url = `https://free-api.heweather.com/v5/forecast?city=${city}&key=286564901ae341f38e5753fa99bfe769`
-    var n = catchUrl(url)
-    var forecast = n.HeWeather5[0].daily_forecast
-    var forecastArr = []
-    for (var i = 0; i < forecast.length; i++) {
-        var f = forecast[i]
-        var w = new Weather()
-        w.city = n.HeWeather5[0].basic.city
+const getForecastWeather = function(city="wuhan") { // 将来的 天气
+    let url = `https://free-api.heweather.com/v5/forecast?city=${city}&key=286564901ae341f38e5753fa99bfe769`
+    let data = catchUrl(url)
+    let forecast = data.HeWeather5[0].daily_forecast
+    let forecastArr = []
+    for (let i = 0; i < forecast.length; i++) {
+        let f = forecast[i]
+        let w = new Weather()
+        w.city = data.HeWeather5[0].basic.city
         w.data = f.data
         w.tmpMax = f.tmp.max
         w.tmpMin = f.tmp.min

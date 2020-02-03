@@ -1,10 +1,11 @@
+// 引入 express 并且创建一个 express 实例赋值给 app
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const log = console.log.bind(console)
 
 app.use(bodyParser.json())
-
+// 配置静态文件
 app.use(express.static('static'))
 
 const registerRoutes = function(app,routes) {
@@ -13,12 +14,27 @@ const registerRoutes = function(app,routes) {
         app[route.method](route.path, route.func)
     }
 }
-
+/*
 const routeIndex = require('./route/index')
 registerRoutes(app, routeIndex.routes)
 
 const routeWeather = require('./route/weather')
 registerRoutes(app, routeWeather.routes)
+
+ */
+const importRoutes = (app, routeModules) => {
+    for (let v of routeModules) {
+        let routeModule = v
+        let route = require(routeModule)
+        registerRoutes(app, route.routes)
+    }
+}
+
+const routeModules = [
+    './route/index',
+    './route/weather',
+]
+importRoutes(app, routeModules)
 
 /*
 listen 函数的第一个参数是我们要监听的端口

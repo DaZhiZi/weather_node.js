@@ -1,11 +1,11 @@
-var log = console.log.bind(console, '*** ')
+const log = console.log.bind(console, '*** ')
 
-var e = function(sel) {
+const e = function(sel) {
     return document.querySelector(sel)
 }
 
-var ajax = function(request) {
-    var r = new XMLHttpRequest()
+const ajax = function(request) {
+    let r = new XMLHttpRequest()
     r.open(request.method, request.url, true)
     if (request.contentType !== undefined) {
         r.setRequestHeader('Content-Type', request.contentType)
@@ -22,14 +22,14 @@ var ajax = function(request) {
     }
 }
 
-var insertNow = function(now) {
-    var tmp = e('.now-tmp')
-    var city = e('.now-city')
-    var cond = e('.now-cond')
-    var windDir = e('.now-windDir')
-    var windSc = e('.now-windSc')
-    var hum = e('.now-hum')
-    var fl = e('.now-fl')
+const insertNow = function(now) {
+    let tmp = e('.now-tmp')
+    let city = e('.now-city')
+    let cond = e('.now-cond')
+    let windDir = e('.now-windDir')
+    let windSc = e('.now-windSc')
+    let hum = e('.now-hum')
+    let fl = e('.now-fl')
     tmp.innerHTML = now.tmp
     cond.innerHTML = now.cond
     city.innerHTML = now.city
@@ -39,32 +39,32 @@ var insertNow = function(now) {
     fl.innerHTML = now.fl
 }
 
-var now = function(city='') {
-    var request = {
+const now = function(city='') {
+    let request = {
         method: 'POST',
         url: '/api/now',
         data: JSON.stringify({city: city}),
         contentType: 'application/json',
         callback: function(response) {
-            var now = JSON.parse(response)
+            let now = JSON.parse(response)
             insertNow(now)
         }
     }
     ajax(request)
 }
 
-var insertToday = function(today) {
-    var cond = e('.today-cond')
-    var tmpMax = e('.today-tmpMax')
-    var tmpMin = e('.today-tmpMin')
+const insertToday = function(today) {
+    let cond = e('.today-cond')
+    let tmpMax = e('.today-tmpMax')
+    let tmpMin = e('.today-tmpMin')
     cond.innerHTML = today.cond
     tmpMax.innerHTML = today.tmpMax + '°'
     tmpMin.innerHTML = today.tmpMin + '°'
 }
 
-var insertChart = function(max, min) {
-    var forecast = e('#id-weather-forecast')
-    var myChart = echarts.init(forecast)
+const insertChart = function(max, min) {
+    let forecast = e('#id-weather-forecast')
+    let myChart = echarts.init(forecast)
     option = {
         title: {
             text: '未来两天气温变化',
@@ -160,28 +160,28 @@ var insertChart = function(max, min) {
     myChart.setOption(option)
 }
 
-var insertForecast = function(f) {
-    var maxArr = []
-    var minArr = []
-    for (var i = 0; i < f.length; i++) {
-        var x = f[i]
-        var max = x.tmpMax
-        var min = x.tmpMin
+const insertForecast = function(f) {
+    let maxArr = []
+    let minArr = []
+    for (let i = 0; i < f.length; i++) {
+        let x = f[i]
+        let max = x.tmpMax
+        let min = x.tmpMin
         maxArr.push(max)
         minArr.push(min)
     }
     insertChart(maxArr, minArr)
 }
 
-var forecast = function(city='') {
-    var request = {
+const forecast = function(city='') {
+    let request = {
         method: 'POST',
         url: '/api/forecast',
         data: JSON.stringify({city: city}),
         contentType: 'application/json',
         callback: function(response) {
-            var f = JSON.parse(response)
-            var today = f[0]
+            let f = JSON.parse(response)
+            let today = f[0]
             insertToday(today)
             insertForecast(f)
         }
@@ -189,58 +189,58 @@ var forecast = function(city='') {
     ajax(request)
 }
 
-var search = function(city) {
+const search = function(city) {
     now(city)
     forecast(city)
 }
 
-var bindSearch = function() {
-    var btn = e('.search-btn')
+const bindSearch = function() {
+    let btn = e('.search-btn')
     btn.addEventListener('click', function() {
-        var input = e('.search-input')
-        var city = input.value
+        let input = e('.search-input')
+        let city = input.value
         search(city)
-        var s = e('#id-weather-search')
+        let s = e('#id-weather-search')
         s.classList.add('hide')
         input.value = ''
     })
 }
 
-var bindSildeUp = function() {
-    var body = e('body')
-    var startY
-    var endY
+const bindSildeUp = function() {
+    let body = e('body')
+    let startY
+    let endY
     body.addEventListener('touchstart', function(event) {
         startY = event.touches[0].pageY
     })
     body.addEventListener('touchend', function(event) {
         endY = event.changedTouches[0].pageY
-        var dy = startY - endY
+        let dy = startY - endY
         if (dy > 0) {
-            var s = e('#id-weather-search')
+            let s = e('#id-weather-search')
             s.classList.remove('hide')
         }
     })
 }
 
-var bindSildeDown = function() {
-    var body = e('body')
-    var startY
-    var endY
+const bindSildeDown = function() {
+    let body = e('body')
+    let startY
+    let endY
     body.addEventListener('touchstart', function(event) {
         startY = event.touches[0].pageY
     })
     body.addEventListener('touchend', function(event) {
         endY = event.changedTouches[0].pageY
-        var dy = startY - endY
+        let dy = startY - endY
         if (dy < 0) {
-            var s = e('#id-weather-search')
+            let s = e('#id-weather-search')
             s.classList.add('hide')
         }
     })
 }
 
-var main = function() {
+const main = function() {
     bindSearch()
     bindSildeUp()
     bindSildeDown()

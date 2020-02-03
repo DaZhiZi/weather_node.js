@@ -1,29 +1,29 @@
-var crawler = require('./../Crawler')
+const crawler = require('./../crawler')
 
-var now = {
+const now = {
     path: '/api/now',
     method: 'post',
     func: function(request, response) {
-        var data = request.body
-        var city = data.city
-        var n = crawler.getNowWeather(city)
+        let data = request.body
+        let city = data.city
+        let n = crawler.getNowWeather(city)
         response.send(n)
     }
 }
 
-var forecast = {
+const forecast = {
     path: '/api/forecast',
     method: 'post',
     func: function(request, response) {
-        var data = request.body
+        let data = request.body
         console.log(data)
-        var city = data.city
-        var f = crawler.getForecastWeather(city)
+        let city = data.city
+        let f = crawler.getForecastWeather(city)
         response.send(f)
     }
 }
 
-var routes = [
+const routes = [
     now,
     forecast,
 ]

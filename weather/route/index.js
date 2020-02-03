@@ -1,6 +1,6 @@
-var sendHtml = function(path, response) {
-    var fs = require('fs')
-    var options = {
+const sendHtml = function(path, response) {
+    let fs = require('fs')
+    let options = {
         encoding: 'utf-8'
     }
     path = 'template/' + path
@@ -9,16 +9,16 @@ var sendHtml = function(path, response) {
     })
 }
 
-var index = {
+const index = {
     path: '/',
     method: 'get',
     func: function(request, response) {
-        var path = 'index.html'
+        let path = 'index.html'
         sendHtml(path, response)
     }
 }
 
-var routes = [
+const routes = [
     index,
 ]
 
