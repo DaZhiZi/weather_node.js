@@ -51,4 +51,4 @@ app.use(express.static('static'))
 ###  weather 截图：
 
 ![search_photo](wuhan.search.png)
-![wearch_photo](wuhan.weather.png)
+![weather_photo](wuhan.weather.png)
