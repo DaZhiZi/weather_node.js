@@ -8,7 +8,7 @@ const sendHtml = function(path, response) {
         response.send(data)
     })
 }
-
+ 
 const index = {
     path: '/',
     method: 'get',

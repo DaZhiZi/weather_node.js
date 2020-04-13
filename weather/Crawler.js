@@ -18,7 +18,7 @@ class Weather {
     }
 }
 
-let catchUrl = function(url) {
+const catchUrl = function(url) {
     let request = require('sync-request')
     let r = request('GET', url)
     let body = r.getBody('utf-8')
@@ -31,8 +31,9 @@ const getNowWeather = function(city="wuhan") { // 现在的 天气
     let url = `https://free-api.heweather.com/v5/now?city=${city}&key=286564901ae341f38e5753fa99bfe769`
     let data = catchUrl(url)
     let now = data.HeWeather5[0].now
+    // log('data', data)
     let n  = new Weather()
-    n.city = n.HeWeather5[0].basic.city
+    n.city = data.HeWeather5[0].basic.city
     n.tmp = now.tmp + '°'
     n.cond = now.cond.txt
     n.windDir = now.wind.dir
@@ -60,5 +61,10 @@ const getForecastWeather = function(city="wuhan") { // 将来的 天气
     return forecastArr
 }
 
-module.exports.getNowWeather = getNowWeather
-module.exports.getForecastWeather = getForecastWeather
+// module.exports.getNowWeather = getNowWeather
+// module.exports.getForecastWeather = getForecastWeather
+module.exports = {
+    log,
+    getNowWeather,
+    getForecastWeather,
+}

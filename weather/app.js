@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 // 配置静态文件
 app.use(express.static('static'))
 
-const registerRoutes = function(app,routes) {
+const registerRoutes = function (app, routes) {
     for (var i = 0; i < routes.length; i++) {
         var route = routes[i]
         app[route.method](route.path, route.func)

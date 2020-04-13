@@ -46,6 +46,7 @@ const now = function(city='') {
         data: JSON.stringify({city: city}),
         contentType: 'application/json',
         callback: function(response) {
+            log('response', response, typeof response)
             let now = JSON.parse(response)
             insertNow(now)
         }
@@ -242,6 +243,7 @@ const bindSildeDown = function() {
 
 const main = function() {
     bindSearch()
+
     bindSildeUp()
     bindSildeDown()
 }

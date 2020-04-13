@@ -1,4 +1,8 @@
-const crawler = require('./../crawler')
+const { 
+    log,
+    getNowWeather,
+    getForecastWeather,
+} = require('./../crawler')
 
 const now = {
     path: '/api/now',
@@ -6,7 +10,7 @@ const now = {
     func: function(request, response) {
         let data = request.body
         let city = data.city
-        let n = crawler.getNowWeather(city)
+        let n = getNowWeather(city)
         response.send(n)
     }
 }
@@ -18,7 +22,7 @@ const forecast = {
         let data = request.body
         console.log(data)
         let city = data.city
-        let f = crawler.getForecastWeather(city)
+        let f = getForecastWeather(city)
         response.send(f)
     }
 }
